@@ -32,6 +32,8 @@ class ConfigHelper:
         self.kal_gain = ConfigHelper.get_from_env("KAL_GAIN")
         self.kal_threshold = ConfigHelper.get_from_env("KAL_THRESHOLD")
         self.gsm_modem_band = ConfigHelper.get_from_env("GSM_MODEM_BAND")
+        self.health_check_interval = int(os.getenv("HEALTH_CHECK_INTERVAL",
+                                                   3600))
         self.gsm_modem_port = self.get_gsm_modem_port()
         self.gps_device_port = self.get_gps_device_port()
         self.ls_ca_path = "/host/run/dbus/crypto/ca.crt"
@@ -55,6 +57,7 @@ class ConfigHelper:
                                                               optional=True)
         self.cgi_whitelist = ConfigHelper.get_list_from_env("CGI_WHITELIST",
                                                             optional=True)
+        self.no_feed_update = os.getenv("NO_FEED_UPDATE")
         return
 
     def print_devices_as_detected(self):
